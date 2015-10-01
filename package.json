@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/wavymav/WeatherApp/issues"
   },
-  "homepage": "https://github.com/wavymav/WeatherApp#readme"
+  "homepage": "https://github.com/wavymav/WeatherApp#readme",
+  "dependencies": {
+    "materialize-css": "^0.97.1"
+  }
 }
