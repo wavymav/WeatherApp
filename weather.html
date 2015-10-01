@@ -1,8 +1,12 @@
 <!DOCTYPE html>
  <html>
 	 <head>
+		 <time>Weather App</time>
+		 <meta charset="utf-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		 <style media="screen">
+
 		 * {
 			 font-family: Helvetica, Arial, sans-serif;
 		 }
@@ -16,15 +20,22 @@
 			flex-direction: column;
 		 }
 
-		html {
+		 html {
 				 background: url(img/blurred-background.jpg) no-repeat center center fixed;
 				 -webkit-background-size: cover;
 				 -moz-background-size: cover;
 				 -o-background-size: cover;
 				 background-size: cover;
-		}
+		 }
 
 		 .panel {
+			 background-color: rgba(255,255,255,0.7);
+			 height: 400px;
+			 width: 550px;
+			 border-radius: 10px;
+		 }
+
+     .panel-search {
 			 background-color: rgba(255,255,255,0.7);
 			 height: 400px;
 			 width: 550px;
@@ -57,6 +68,12 @@
 			 align-items: center;
  			 justify-content: center;
 		 }
+
+     .home-container {
+       height: 40%;
+       flex-direction: column;
+       font-size: 1.25em;
+     }
 
 		 .current-weather-container {
 			 padding: 0;
@@ -97,6 +114,24 @@
 			 flex-direction: column;
 			 align-items: center;
  			 justify-content: space-around;
+		 }
+
+		 .error-info-container {
+			 padding: 0;
+			 margin: 0;
+			 border: 1px solid green;
+			 width: 100%;
+			 height: 20%;
+			 background-color: rgba(231, 76, 60, 0.84);
+			 border-bottom-left-radius: 10px;
+			 border-bottom-right-radius: 10px;
+			 display: flex;
+			 align-items: center;
+ 			 justify-content: center;
+		 }
+
+		 .error-info {
+			 color: #fff;
 		 }
 
   	 .bar {
