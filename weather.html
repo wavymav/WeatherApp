@@ -2,11 +2,11 @@
  <html>
 	 <head>
 		 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-		 <link rel="stylesheet" href="style.css">
 		 <style media="screen">
 		 * {
 			 font-family: Helvetica, Arial, sans-serif;
 		 }
+
 		 html,
 		 body {
 	    height: 100vh;
@@ -47,7 +47,7 @@
 			 flex-direction: column;
 		 }
 
-		 .one {
+		 .head-info-container {
 			 padding: 0;
 			 margin: 0;
 			 border: 1px solid red;
@@ -58,7 +58,7 @@
  			 justify-content: center;
 		 }
 
-		 .two {
+		 .current-weather-container {
 			 padding: 0;
 			 margin: 0;
 			 border: 1px solid blue;
@@ -70,7 +70,7 @@
  			 justify-content: center;
 		 }
 
-		 .three {
+		 .high-low-temperature-container {
 			 padding: 0;
 			 margin: 0;
 			 border: 1px solid green;
@@ -82,12 +82,12 @@
  			 justify-content: center;
 		 }
 
-		 .three p {
+		 .high-low-temperature-container p {
 			 margin: 0;
 			 padding: 0;
 		 }
 
-		 .four {
+		 .search-city-container {
 			 padding: 0;
 			 margin: 0;
 			 border: 1px solid yellow;
@@ -148,20 +148,20 @@
 
 		 <h1 class="title">Weather App</h1>
 			 <div class="panel weather-info">
-				 <div class="one">
+				 <div class="head-info-container">
 					 <p class="head-info">The current weather in College Park, US</p>
 				 </div>
-				 <div class="two">
+				 <div class="current-weather-container">
 					 <img style="border: 1px solid blue" src="https://maxcdn.icons8.com/Color/PNG/96/Weather/partly_cloudy_day-96.png" title="Partly Cloudy Day" width="96">
 					 <p class="weather-description">Partly Cloudy Day</p>
 					 <p class="current-temperature">76&#8457</p>
 				 </div>
-				 <div class="three">
+				 <div class="high-low-temperature-container">
 					 <p><strong>High: </strong>80&#8457</p>
 					 <strong class="bar">|</strong>
 					 <p><strong>Low: </strong>65&#8457</p>
 				 </div>
-				 <form action="/" method="POST" class="four">
+				 <form action="/" method="POST" class="search-city-container">
 				    <input type="text" placeholder="Enter a City" id="city" name="city">
 				    <input type="submit" value="search" class="button">
 				 </form>
