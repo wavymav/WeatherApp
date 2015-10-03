@@ -70,5 +70,3 @@ function Weather(cityName) {
 // Weather constructor object gains access to the EventEmitter's prototype chain
 // Inherits the prototype chain
 util.inherits(Weather, EventEmitter);
-
-var currentWeather = new Weather('College Park');
