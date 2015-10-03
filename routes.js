@@ -52,5 +52,11 @@ exports.weatherReport = function(req, res) {
 			// When the response ends/finish the htmlContent is sent to the server
 			res.end('DONE');
 		});
+
+		currentWeather.on(eventConfig.ERROR, function(err) {
+			// Testing the response durring an error event
+			res.write(err.message + 'hahah\n');
+			res.end('DONE');
+		});
 	}
 };
