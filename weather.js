@@ -2,7 +2,7 @@
 // Requiring the util node module
 // Requiring the http node module
 // Requiring apiKey.js
-// Requiring eventConfig.js
+// Requiring eventConfig.js events property values
 var EventEmitter = require('events').EventEmitter;
 var util = require('util');
 var http = require('http');
@@ -70,3 +70,5 @@ function Weather(cityName) {
 // Weather constructor object gains access to the EventEmitter's prototype chain
 // Inherits the prototype chain
 util.inherits(Weather, EventEmitter);
+
+module.exports = Weather;
