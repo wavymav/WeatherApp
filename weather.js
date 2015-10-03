@@ -48,8 +48,6 @@ function Weather(cityName) {
 				try {
 					// Parsing the JSON data & storing it in weatherData var
 				 	var weatherData = JSON.parse(bodyData);
-					console.log(weatherData.main.temp);
-					console.log(weatherData.name);
 					weatherEmitter.emit(eventConfig.END, weatherData);
 				} catch (err) {
 					weatherEmitter.emit(eventConfig.ERROR, err);
