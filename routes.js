@@ -15,8 +15,12 @@ exports.homeSearch = function(req, res) {
 	if (req.url === '/') {
 		res.writeHead(200, contentTypeHeader);
 
-		// rendering the search MockUp to test
-		render.renderTemplateView('search', null, res);
+		// rendering the search view templates for test
+		render.renderTemplateView('header', res);
+		render.renderTemplateView('headSearchContainer', res);
+		render.renderTemplateView('searchContainer', res);
+		render.renderTemplateView('footer', res);
+
 		// Ends response to the server
 		res.end();
 	}
