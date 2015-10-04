@@ -1,10 +1,13 @@
 // Requiring the Weather function constructor
 // Requiring config.js events property values
 // Requiring config.js views property values
+// Requring the templateViewRenderer
+// Requring the temperature helper
 var Weather = require('./weather');
 var events = require('./config').events;
 var views = require('./config').templateViews;
 var render = require('./templateViewRenderer');
+var removeDecimals = require('./helpers').removeDecimalAndDigits;
 
 var exports = module.exports = {};
 
@@ -34,7 +37,7 @@ exports.weatherReport = function(req, res) {
 
 	if (cityName.length > 0) {
 		// Setting the content mime type to plan text
-		res.writeHead(200, contentType);
+		res.writeHead(200, {'Content-Type': 'text/plain'});
 
 		// new weather function constructor instance
 		var currentWeather = new Weather(cityName);
@@ -43,22 +46,23 @@ exports.weatherReport = function(req, res) {
 		currentWeather.on(events.END, function(weatherJSON) {
 			var weatherData = {
 				currentCity: weatherJSON.name,
-				currentTemp: weatherJSON.main.temp,
+				currentCountry: weatherJSON.sys.country,
+				currentTemp: removeDecimals(weatherJSON.main.temp),
 				currentDescipt: weatherJSON.weather[0].description,
-				highTemp: weatherJSON.main.temp_max,
-				lowTemp: weatherJSON.main.temp_min
+				highTemp: removeDecimals(weatherJSON.main.temp_max),
+				lowTemp: removeDecimals(weatherJSON.main.temp_min)
 			};
 
-			// // Testing the response with the write method
-			// res.write('The cureent temperature in ' + weatherData.currentCity + ' is ' + weatherData.currentTemp + '.\n' +
-			// 					'Description: ' + weatherData.currentDescipt + '.\n' +
-			// 					'High: ' + weatherData.highTemp + '\n' +
-			// 				  'Low: ' + weatherData.lowTemp + '\n');
+			// Testing the response with the write method
+			res.write('The cureent temperature in ' + weatherData.currentCity + ' is ' + weatherData.currentTemp + ',' + weatherData.currentCountry +'.\n' +
+								'Description: ' + weatherData.currentDescipt + '.\n' +
+								'High: ' + weatherData.highTemp + '\n' +
+							  'Low: ' + weatherData.lowTemp + '\n');
 
-			render.renderTemplateView(views.HEADER, res);
-			render.renderTemplateView(views.WEATHER, res);
-			render.renderTemplateView(views.SEARCH, res);
-			render.renderTemplateView(views.FOOTER, res);
+			// render.renderTemplateView(views.HEADER, res);
+			// render.renderTemplateView(views.WEATHER, res, weatherData);
+			// render.renderTemplateView(views.SEARCH, res);
+			// render.renderTemplateView(views.FOOTER, res);
 
 			// Ends response to the server
 			res.end();
@@ -68,10 +72,11 @@ exports.weatherReport = function(req, res) {
 			// // Testing the response durring an error event
 			// res.write(err.message + '\n');
 
+
 			render.renderTemplateView(views.HEADER, res);
 			render.renderTemplateView(views.HEADSEARCH, res);
 			render.renderTemplateView(views.SEARCH, res);
-			render.renderTemplateView(views.ERROR, res);
+			render.renderTemplateView(views.ERROR, res, {errMessage: err.message});
 			render.renderTemplateView(views.FOOTER, res);
 
 			// Ends response to the server
