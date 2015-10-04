@@ -49,20 +49,33 @@ exports.weatherReport = function(req, res) {
 				lowTemp: weatherJSON.main.temp_min
 			};
 
-			// Testing the response with the write method
-			res.write('The cureent temperature in ' + weatherData.currentCity + ' is ' + weatherData.currentTemp + '.\n' +
-								'Description: ' + weatherData.currentDescipt + '.\n' +
-								'High: ' + weatherData.highTemp + '\n' +
-							  'Low: ' + weatherData.lowTemp + '\n');
+			// // Testing the response with the write method
+			// res.write('The cureent temperature in ' + weatherData.currentCity + ' is ' + weatherData.currentTemp + '.\n' +
+			// 					'Description: ' + weatherData.currentDescipt + '.\n' +
+			// 					'High: ' + weatherData.highTemp + '\n' +
+			// 				  'Low: ' + weatherData.lowTemp + '\n');
 
-			// When the response ends/finish the htmlContent is sent to the server
-			res.end('DONE');
+			render.renderTemplateView(views.HEADER, res);
+			render.renderTemplateView(views.WEATHER, res);
+			render.renderTemplateView(views.SEARCH, res);
+			render.renderTemplateView(views.FOOTER, res);
+
+			// Ends response to the server
+			res.end();
 		});
 
 		currentWeather.on(events.ERROR, function(err) {
-			// Testing the response durring an error event
-			res.write(err.message + 'hahah\n');
-			res.end('DONE');
+			// // Testing the response durring an error event
+			// res.write(err.message + '\n');
+
+			render.renderTemplateView(views.HEADER, res);
+			render.renderTemplateView(views.HEADSEARCH, res);
+			render.renderTemplateView(views.SEARCH, res);
+			render.renderTemplateView(views.ERROR, res);
+			render.renderTemplateView(views.FOOTER, res);
+
+			// Ends response to the server
+			res.end();
 		});
 	}
 };
