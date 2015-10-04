@@ -1,9 +1,8 @@
-// Requiring the node file module
 // Requiring the Weather function constructor
 // Requiring eventConfig.js events property values
-var fs = require('fs');
 var Weather = require('./weather');
 var eventConfig = require('./eventConfig').events;
+var render = require('./templateViewRenderer');
 
 var exports = module.exports = {};
 
@@ -15,10 +14,11 @@ exports.homeSearch = function(req, res) {
 	// If the req.url is '/' then you're in the root dir
 	if (req.url === '/') {
 		res.writeHead(200, contentTypeHeader);
-		// Synchronously reading the file content from the specified loction and storing the content in htmlContent var
-		var htmlContent = fs.readFileSync(__dirname + '/HTMLmockups/search.html');
-		// When the response ends/finish the htmlContent is sent to the server
-		res.end(htmlContent);
+
+		// rendering the search MockUp to test
+		render.renderTemplateView('search', null, res);
+		// Ends response to the server
+		res.end();
 	}
 };
 
