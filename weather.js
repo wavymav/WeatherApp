@@ -2,12 +2,12 @@
 // Requiring the util node module
 // Requiring the http node module
 // Requiring apiKey.js
-// Requiring eventConfig.js events property values
+// Requiring config.js events property values
 var EventEmitter = require('events').EventEmitter;
 var util = require('util');
 var http = require('http');
 var apiKey = require('./apiKey');
-var eventConfig = require('./eventConfig').events;
+var events = require('./config').events;
 
 // Weather function constuctor object
 function Weather(cityName) {
@@ -34,33 +34,33 @@ function Weather(cityName) {
 		}
 
 		// Using the 'data' event handler to pass in the chunks of data from the response.
-		res.on(eventConfig.DATA, function(data) {
+		res.on(events.DATA, function(data) {
 			// Concats the each data chunk to the bodyData var
 			bodyData += data;
-			weatherEmitter.emit(eventConfig.DATA, data);
+			weatherEmitter.emit(events.DATA, data);
 		});
 
 		// Using the 'end' event handler to access the data stored in bodyData after the
 		// concatenation of data complets in the 'data' event handler.
-		res.on(eventConfig.END, function() {
+		res.on(events.END, function() {
 			if (res.statusCode === 200) {
 				// Using the try catch block to find any parsing errors
 				try {
 					// Parsing the JSON data & storing it in weatherData var
 				 	var weatherData = JSON.parse(bodyData);
-					weatherEmitter.emit(eventConfig.END, weatherData);
+					weatherEmitter.emit(events.END, weatherData);
 				} catch (err) {
-					weatherEmitter.emit(eventConfig.ERROR, err);
+					weatherEmitter.emit(events.ERROR, err);
 				}
 			}
-		}).on(eventConfig.ERROR, function(err){
-			weatherEmitter.emit(eventConfig.ERROR, err);
+		}).on(events.ERROR, function(err){
+			weatherEmitter.emit(events.ERROR, err);
 	  });
 
 	});
 
 	// Handling error events on the request object
-	req.on(eventConfig.ERROR, function(err) {
+	req.on(events.ERROR, function(err) {
 		console.error('There was an error: ' + err.message);
 	});
 }
