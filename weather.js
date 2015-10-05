@@ -1,13 +1,8 @@
-// Requiring the EventEmitter from the events node module
-// Requiring the util node module
-// Requiring the http node module
-// Requiring apiKey.js
-// Requiring config.js events property values
-var EventEmitter = require('events').EventEmitter;
-var util = require('util');
-var http = require('http');
-var apiKey = require('./apiKey');
-var events = require('./config').events;
+var EventEmitter = require('events').EventEmitter; // Requiring the EventEmitter from the events node module
+var util = require('util'); // Requiring the util node module
+var http = require('http'); // Requiring the http node module
+var apiKey = require('./apiKey'); // Requiring apiKey.js
+var events = require('./config').events; // Requiring config.js events property values
 
 // Weather function constuctor object
 function Weather(cityName) {

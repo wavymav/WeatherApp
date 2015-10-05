@@ -1,13 +1,8 @@
-// Requiring the Weather function constructor
-// Requiring config.js events property values
-// Requiring config.js views property values
-// Requring the templateViewRenderer
-// Requring the temperature helper
-var Weather = require('./weather');
-var events = require('./config').events;
-var views = require('./config').templateViews;
-var render = require('./templateViewRenderer');
-var removeDecimals = require('./helpers').removeDecimalAndDigits;
+var Weather = require('./weather'); // Requiring the Weather function constructor
+var events = require('./config').events; // Requiring config.js events property values
+var views = require('./config').templateViews; // Requiring config.js views property values
+var render = require('./templateViewRenderer'); // Requring the templateViewRenderer
+var removeDecimals = require('./helpers').removeDecimalAndDigits; // Requring the temperature helper
 
 var exports = module.exports = {};
 
@@ -33,8 +28,8 @@ exports.homeSearch = function(req, res) {
 		} else {
 			// else get the POST querystring data
 			// In this case is the city=''
-			req.on(events.DATA, function(bodyData) {
-				console.log(bodyData.toString());
+			req.on(events.DATA, function(postData) {
+				console.log(postData.toString());
 			});
 		}
 	}

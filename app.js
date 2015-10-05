@@ -1,6 +1,5 @@
-// Requiring the node http module
-var http = require('http');
-var routes = require('./routes');
+var http = require('http'); // Requiring the node http module
+var routes = require('./routes'); // Requiring all routes
 
 
 // Creating the web server

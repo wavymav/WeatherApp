@@ -1,5 +1,4 @@
-// Requiring the node file module
-var fs = require('fs');
+var fs = require('fs'); // Requiring the node file module
 
 var exports = module.exports = {};
 
