@@ -34,7 +34,12 @@ exports.homeSearch = function(req, res) {
 				// Using the querystring parse method to convert the post data string into an {}
 				// query = {city: College Park}
 				var query = querystring.parse(postData.toString());
-				console.log(query.city);
+
+				// Using the writeHead method to set the status code to 303 (see ohter)
+				// 303 status code turns a POST request into a GET request
+				// Change the header to location with the /cityName in the URL
+				res.writeHead(303, { 'Location':'/' + query.city });
+				res.end();
 			});
 		}
 	}
