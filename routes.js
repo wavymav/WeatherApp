@@ -1,4 +1,5 @@
 var Weather = require('./weather'); // Requiring the Weather function constructor
+var querystring = require("querystring"); // Requiring the querystring module
 var events = require('./config').events; // Requiring config.js events property values
 var views = require('./config').templateViews; // Requiring config.js views property values
 var render = require('./templateViewRenderer'); // Requring the templateViewRenderer
@@ -28,8 +29,12 @@ exports.homeSearch = function(req, res) {
 		} else {
 			// else get the POST querystring data
 			// In this case is the city=''
+			// ex. 'city=College+Park'
 			req.on(events.DATA, function(postData) {
-				console.log(postData.toString());
+				// Using the querystring parse method to convert the post data string into an {}
+				// query = {city: College Park}
+				var query = querystring.parse(postData.toString());
+				console.log(query.city);
 			});
 		}
 	}
