@@ -18,16 +18,25 @@ var contentType = {'Content-Type': 'text/html'};
 exports.homeSearch = function(req, res) {
 	// If the req.url is '/' then you're in the root dir
 	if (req.url === '/') {
-		res.writeHead(200, contentType);
+		// making sure the request method is GET
+		if (req.method.toUpperCase() === 'GET') {
+			res.writeHead(200, contentType);
 
-		// rendering the search view templates for test
-		render.renderTemplateView(views.HEADER, res);
-		render.renderTemplateView(views.HEADSEARCH, res);
-		render.renderTemplateView(views.SEARCH, res);
-		render.renderTemplateView(views.FOOTER, res);
+			// rendering the search view templates for test
+			render.renderTemplateView(views.HEADER, res);
+			render.renderTemplateView(views.HEADSEARCH, res);
+			render.renderTemplateView(views.SEARCH, res);
+			render.renderTemplateView(views.FOOTER, res);
 
-		// Ends response to the server
-		res.end();
+			// Ends response to the server
+			res.end();
+		} else {
+			// else get the POST querystring data
+			// In this case is the city=''
+			req.on(events.DATA, function(bodyData) {
+				console.log(bodyData.toString());
+			});
+		}
 	}
 };
 
@@ -37,7 +46,7 @@ exports.weatherReport = function(req, res) {
 
 	if (cityName.length > 0) {
 		// Setting the content mime type to plan text
-		res.writeHead(200, {'Content-Type': 'text/plain'});
+		res.writeHead(200, contentType);
 
 		// new weather function constructor instance
 		var currentWeather = new Weather(cityName);
@@ -53,16 +62,16 @@ exports.weatherReport = function(req, res) {
 				lowTemp: removeDecimals(weatherJSON.main.temp_min)
 			};
 
-			// Testing the response with the write method
-			res.write('The cureent temperature in ' + weatherData.currentCity + ' is ' + weatherData.currentTemp + ',' + weatherData.currentCountry +'.\n' +
-								'Description: ' + weatherData.currentDescipt + '.\n' +
-								'High: ' + weatherData.highTemp + '\n' +
-							  'Low: ' + weatherData.lowTemp + '\n');
+			// // Testing the response with the write method
+			// res.write('The cureent temperature in ' + weatherData.currentCity + ' is ' + weatherData.currentTemp + ',' + weatherData.currentCountry +'.\n' +
+			// 					'Description: ' + weatherData.currentDescipt + '.\n' +
+			// 					'High: ' + weatherData.highTemp + '\n' +
+			// 				  'Low: ' + weatherData.lowTemp + '\n');
 
-			// render.renderTemplateView(views.HEADER, res);
-			// render.renderTemplateView(views.WEATHER, res, weatherData);
-			// render.renderTemplateView(views.SEARCH, res);
-			// render.renderTemplateView(views.FOOTER, res);
+			render.renderTemplateView(views.HEADER, res);
+			render.renderTemplateView(views.WEATHER, res, weatherData);
+			render.renderTemplateView(views.SEARCH, res);
+			render.renderTemplateView(views.FOOTER, res);
 
 			// Ends response to the server
 			res.end();
