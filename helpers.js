@@ -71,7 +71,7 @@ exports.getWeatherIcon = function(weatherCode, iconCode) {
 		return 'dry';
 	} else if (weatherCode === 800) {
 		if (isNightTime(iconCode)) {
-			return 'moon';
+			return 'bright_moon';
 		} else {
 			return 'sun';
 		}
