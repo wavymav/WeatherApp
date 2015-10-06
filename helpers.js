@@ -37,8 +37,7 @@ exports.removeDecimalAndDigits = function(number) {
 	return value;
 };
 
-
-
+// Determines the appropriate string to return for the weather icon img tag source attribute
 exports.getWeatherIcon = function(weatherCode, iconCode) {
 	var fileName;
 
