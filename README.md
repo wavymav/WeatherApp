@@ -8,7 +8,7 @@ retrieves the current weather data from the OpenWeatherMap API and dynamically d
 
 My command-line version of the weather app was a starting point for this web app. Instead of creating another `get` function for the `http.get()` method for the OpenWeatherMap API, I used a function constructor called `Weather` that takes city name as a parameter in `weather.js`. I wanted the `Weather` function constructor to directly inherit the `event` modules `EventEmiter` function constructor properties and methods, essentially making `Weather` an `EventEmiter`. I also made sure to use the `util` module to allow the `Weather` constructor to have access to the `EventEmitter` prototype chain. Doing this allowed me to set up `.on()` methods on the `new Weather(cityName)` instance in my `routes.js`.
 
-- The Weather constructor is solely responsible for getting and hadling the JSON data from the OpenWeatherMap API.
+- The Weather constructor is solely responsible for getting the JSON data from the OpenWeatherMap API.
 
 **Note:** *I used my config.js to hold all the magic string vaules.(templateViews & events)*
 ```javascript
@@ -149,7 +149,7 @@ exports.weatherReport = function(req, res) {
 ```
 The render module `./templateViewRenderer` in `/routes.js` is responsable for getting the property values of the passed in JSON data and merging that data to the read in templateView file by using the Node `fs` module. 
 - The `insertDataValues()` uses a for in loop to find and replace the matching property names with the property values
-- The `renderTemplateView()` uses the `fs.readFileSync()` method read in the file from a specific location. Since I used the `.replace()` method in `insertDataValues()`, I had to convert the file being return into a string. The `fs.readFileSync()` returns a buffer by default so I need to convert this into a string, I need to pass another argurment that specify's the type of character encoding I want which is `utf8`. This allow the content to be read in and manipulated as a string.
+- The `renderTemplateView()` uses the `fs.readFileSync()` method read in the file from a specific location. Since I used the `.replace()` method in `insertDataValues()`, I had to convert the file being returned into a string. The `fs.readFileSync()` returns a buffer by default so I needed to convert this into a string. I did this by passing another argurment that specify's the type of character encoding I want which is `utf8`. This allow the content to be read in and manipulated as a string.
 
 ```javascript
 // templateViewRenderer
