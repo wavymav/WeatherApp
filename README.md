@@ -2,6 +2,8 @@
 This is a basic Node.js web app that allows a user to find out the current weather for any city in the world. The Node.js app
 retrieves the current weather data from the OpenWeatherMap API and dynamically displays the content to the webpage.
 
+![Weather App](https://raw.githubusercontent.com/wavymav/WeatherApp/master/img/weather-app.png?raw=true "Weather In College Park")
+
 **Note:** *program will not work without an OpenWeatherMap API Key of your own.*
 
 My command-line version of the weather app was a starting point for this web app. Instead of creating another `get` function for the `http.get()` method for the OpenWeatherMap API, I used a function constructor called `Weather` that takes city name as a parameter in `weather.js`. I wanted the `Weather` function constructor to directly inherit the `event` modules `EventEmiter` function constructor properties and methods, essentially making `Weather` an `EventEmiter`. I also made sure to use the `util` module to allow the `Weather` constructor to have access to the `EventEmitter` prototype chain. Doing this allowed me to set up `.on()` methods on the `new Weather(cityName)` instance in my `routes.js`.
