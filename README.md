@@ -10,7 +10,7 @@ My command-line version of the weather app was a starting point for this web app
 
 - The Weather constructor is solely responsible for getting the JSON data from the OpenWeatherMap API.
 
-**Note:** *I used my config.js to hold all the magic string vaules.(templateViews & events)*
+**Note:** *I used my config.js to hold all the magic string values.(templateViews & events)*
 ```javascript
 // weather.js
 var EventEmitter = require('events').EventEmitter; // Requiring the EventEmitter from the events node module
@@ -76,7 +76,7 @@ http.createServer(function(req, res) {
 console.log('Server running on localhost:3000');
 ```
 
-The `routes.js` file was tasked with hadling routes and rendering the proper `templateViews` based on the response. The `/` or root gains access to the home search route and `/cityName` was used to gain access to the weather report page along with the OpenWeatherMap API JSON data returned merged with the `templateViews`. I also made sure handle any response errors by rendering error `templateViews`.
+The `routes.js` file was tasked with handling routes and rendering the proper `templateViews` based on the response. The `/` or root gains access to the home search route and `/cityName` was used to gain access to the weather report page along with the OpenWeatherMap API JSON data returned merged with the `templateViews`. I also made sure handle any response errors by rendering error `templateViews`.
 
 ```javascript
 // routes.js
@@ -147,9 +147,9 @@ exports.weatherReport = function(req, res) {
 	}
 };
 ```
-The render module `./templateViewRenderer` in `/routes.js` is responsable for getting the property values of the passed in JSON data and merging that data to the read in templateView file by using the Node `fs` module. 
+The render module `./templateViewRenderer` in `/routes.js` is responsible for getting the property values of the passed in JSON data and merging that data to the read in templateView file by using the Node `fs` module. 
 - The `insertDataValues()` uses a for in loop to find and replace the matching property names with the property values
-- The `renderTemplateView()` uses the `fs.readFileSync()` method read in the file from a specific location. Since I used the `.replace()` method in `insertDataValues()`, I had to convert the file being returned into a string. The `fs.readFileSync()` returns a buffer by default so I needed to convert this into a string. I did this by passing another argurment that specify's the type of character encoding I want which is `utf8`. This allow the content to be read in and manipulated as a string.
+- The `renderTemplateView()` uses the `fs.readFileSync()` method read in the file from a specific location. Since I used the `.replace()` method in `insertDataValues()`, I had to convert the file being returned into a string. The `fs.readFileSync()` returns a buffer by default so I needed to convert this into a string. I did this by passing another argument that specifies the type of character encoding I want, which is `utf8`. This allow the content to be read in and manipulated as a string.
 
 ```javascript
 // templateViewRenderer
